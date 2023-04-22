@@ -25,5 +25,5 @@ jobs:
           username: ${{ secrets.USER }}
           port: ${{ secrets.PORT }}
           password: ${{ secrets.SSH_PASS }}
-          source: "./test_folder"
+          source: "./test_folder/"
           target: "/home/pi/git_upload"
