@@ -28,7 +28,7 @@ jobs:
           echo WIX_ACCOUNT_ID=${{ secrets.WIX_ACCOUNT_ID }} >> .env
           echo WIX_SITE_ID=${{ secrets.WIX_SITE_ID }} >> .env
           cat .env
-          ll
+          ls
 
       - name: Upload
         uses: appleboy/scp-action@master
