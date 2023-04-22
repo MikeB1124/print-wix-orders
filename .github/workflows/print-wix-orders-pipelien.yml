@@ -18,6 +18,18 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v3
 
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo PRINTER_GATEWAY_IP_ADDR={{ secrets.PRINTER_GATEWAY_IP_ADDR }} >> .env
+          echo PRINTER_PORT=${{ secrets.PRINTER_PORT }} >> .env
+          echo WIX_AUTH=${{ secrets.WIX_AUTH }} >> .env
+          echo WIX_ACCOUNT_ID=${{ secrets.WIX_ACCOUNT_ID }} >> .env
+          echo WIX_SITE_ID=${{ secrets.WIX_SITE_ID }} >> .env
+          cat .env
+          ll
+
       - name: Upload
         uses: appleboy/scp-action@master
         with:
