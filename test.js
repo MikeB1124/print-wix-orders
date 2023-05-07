@@ -26,3 +26,7 @@ function testTemplateBuilder(order) {
     let template = new TemplateBuilder(order.fulfillment, order)
     console.log(template.get_xml_template())
 }
+
+function comingSoonTestFunction() {
+    
+}
