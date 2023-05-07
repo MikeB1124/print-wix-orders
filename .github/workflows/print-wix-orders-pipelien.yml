@@ -22,14 +22,13 @@ jobs:
       - name: Create env file
         run: |
           touch .env
-          echo PRINTER_GATEWAY_IP_ADDR={{ secrets.PRINTER_GATEWAY_IP }} >> .env
+          echo PRINTER_GATEWAY_IP_ADDR=${{ secrets.PRINTER_GATEWAY_IP }} >> .env
           echo PRINTER_PORT=${{ secrets.PRINTER_PORT }} >> .env
           echo WIX_AUTH=${{ secrets.WIX_AUTH }} >> .env
           echo WIX_ACCOUNT_ID=${{ secrets.WIX_ACCOUNT_ID }} >> .env
           echo WIX_SITE_ID=${{ secrets.WIX_SITE_ID }} >> .env
           echo LOG_FOLDER=/home/pi/Scripts/print-wix-orders/logs >> .env
-          cat .env
-          ls
+          cp ./src
 
       - name: Upload
         uses: appleboy/scp-action@master
@@ -40,3 +39,4 @@ jobs:
           password: ${{ secrets.SSH_PASS }}
           source: "./"
           target: "/home/pi/Scripts/print-wix-orders"
+          overwrite: true
