@@ -22,7 +22,7 @@ jobs:
       - name: Create env file
         run: |
           touch .env
-          echo PRINTER_GATEWAY_IP_ADDR={{ secrets.PRINTER_GATEWAY_IP_ADDR }} >> .env
+          echo PRINTER_GATEWAY_IP_ADDR={{ secrets.PRINTER_GATEWAY_IP }} >> .env
           echo PRINTER_PORT=${{ secrets.PRINTER_PORT }} >> .env
           echo WIX_AUTH=${{ secrets.WIX_AUTH }} >> .env
           echo WIX_ACCOUNT_ID=${{ secrets.WIX_ACCOUNT_ID }} >> .env
