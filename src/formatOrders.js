@@ -1,9 +1,5 @@
 const formatPhoneNumber = require("./utils")
 
-
-
-
-
 function formatOrders(orders){
     let parsedArray = []
     let orderIDs = []

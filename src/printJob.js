@@ -1,34 +1,24 @@
 const {EscPos} = require("@tillpos/xml-escpos-helper");
-const builder = require('xmlbuilder');
 const connectToPrinter = require("./connectToPrinter");
-const fs = require('fs');
-const logger = require('./logger')
+const logger = require('./logger');
+const TemplateBuilder = require("./TemplateBuilder");
+require('dotenv').config()
 
 const PRINTER = {
     devince_name: "EPSON_Printer",
-    host: "23.243.244.219",
-    port: 9100,
+    host: process.env.PRINTER_GATEWAY_IP_ADDR,
+    port: process.env.PRINTER_PORT,
 };
 
 const printJob = async (orders) => {
     orders.map((order) => {
         logger.info(order)
-        if(order.fulfillment == "PICKUP"){
-            const template = fs.readFileSync(`./wix-orders-check/wix-webhook/pickupTemplates/template${order.items.length}.xml`, {encoding: "utf8"});
-            const message = EscPos.getBufferFromTemplate(template, order);
-            try{
-                connectToPrinter(PRINTER.host, PRINTER.port, message);
-            }catch(err){
-                console.log("Error: ", err);
-            }
-        }else{
-            const template = fs.readFileSync(`./wix-orders-check/wix-webhook/deliveryTemplates/template${order.items.length}.xml`, {encoding: "utf8"});
-            const message = EscPos.getBufferFromTemplate(template, order);
-            try{
-                connectToPrinter(PRINTER.host, PRINTER.port, message);
-            }catch(err){
-                console.log("Error: ", err);
-            }
+        let template = new TemplateBuilder(order.fulfillment, order)
+        const message = EscPos.getBufferFromTemplate(template.get_xml_template(), order);
+        try{
+            connectToPrinter(PRINTER.host, PRINTER.port, message);
+        }catch(err){
+            console.log("Error: ", err);
         }
     })    
 };
