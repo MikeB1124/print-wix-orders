@@ -39,4 +39,3 @@ jobs:
           password: ${{ secrets.SSH_PASS }}
           source: "./"
           target: "/home/pi/Scripts/print-wix-orders"
-          overwrite: true
