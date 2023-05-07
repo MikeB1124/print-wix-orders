@@ -18,6 +18,12 @@
   },
   "homepage": "https://github.com/MikeB1124/print-wix-orders#readme",
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "@tillpos/xml-escpos-helper": "^0.2.7",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "net": "^1.0.2",
+    "node-fetch": "^3.3.1",
+    "winston": "^3.8.2",
+    "xmlbuilder2": "^3.0.2"
   }
 }

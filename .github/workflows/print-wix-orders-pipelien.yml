@@ -27,6 +27,7 @@ jobs:
           echo WIX_AUTH=${{ secrets.WIX_AUTH }} >> .env
           echo WIX_ACCOUNT_ID=${{ secrets.WIX_ACCOUNT_ID }} >> .env
           echo WIX_SITE_ID=${{ secrets.WIX_SITE_ID }} >> .env
+          echo LOG_FOLDER=/home/pi/Scripts/print-wix-orders/logs >> .env
           cat .env
           ls
 
